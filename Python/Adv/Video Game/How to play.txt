@@ -1,0 +1,17 @@
+You must destroy the UFOs by left clicking on them before they get across the screen.
+If one makes it across the screen you lose 1 hp.
+
+While destroying the UFOs be careful to NOT click on the rockets 
+as it will destroy them and you will lose hp.
+
+The key functions below are meant to be used as a way to make your own fun.
+Using default settings is the way the game is meant to be played.
+
+Key Functions
+SPACEBAR: Pauses Game
+Arrow Right: Speeds Up Game
+Arrow Left: Slows Down Game
+Arrow Up: Increases UFO Amount
+Arrow Down: Decreases UFO Amount
+F Key: Gives Player 1 HP per click
+R: Resets Game Settings

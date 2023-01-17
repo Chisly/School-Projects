@@ -1,0 +1,1 @@
+print("There are %d seconds in 42 minutes and 42 seconds" % (42*60+42))

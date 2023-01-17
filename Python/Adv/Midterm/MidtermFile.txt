@@ -1,0 +1,6 @@
+RealEmail@yahoo.com 34
+notreal 3
+anothernotreal@lolcom 47
+secondRealEmail@gmail.com 45
+RealEmail@yahoo.com 7
+thirdReal@gmail.com notANumber
