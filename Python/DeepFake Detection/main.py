@@ -105,75 +105,27 @@ plt.title('Training and Validation Loss')
 plt.show()
 
 #Here down sets up an image to predict
-#Fake Image
-input_image = pathlib.Path('Data/Test/Fake/00F8LKY6JC.jpg')
+while(True):
+    try:
+        dir = input("Enter path to image.\nEx: Path/To/Img.jpg\n")
+        if dir == "stop":
+            break
 
-img = tf.keras.utils.load_img(
-    input_image, target_size=(180, 180)
-)
+        input_image = pathlib.Path(dir)
+        img = tf.keras.utils.load_img(
+            input_image, target_size=(180, 180)
+        )
 
-img_array = tf.keras.utils.img_to_array(img)
-img_array = tf.expand_dims(img_array, 0) # Create a batch
+        img_array = tf.keras.utils.img_to_array(img)
+        img_array = tf.expand_dims(img_array, 0)
 
-predictions = model.predict(img_array)
-score = tf.nn.softmax(predictions[0])
+        predictions = model.predict(img_array)
+        score = tf.nn.softmax(predictions[0])
 
-print(
-    "There is a {:.2f} percent chance that this image is {}."
-    .format(100 * np.max(score), class_names[np.argmax(score)])
-)
+        print(
+            "There is a {:.2f} percent chance that this image is {}."
+            .format(100 * np.max(score), class_names[np.argmax(score)])
+        )
 
-#Real Image
-input_image = pathlib.Path('Data/Test/Real/00001.jpg')
-
-img = tf.keras.utils.load_img(
-    input_image, target_size=(180, 180)
-)
-
-img_array = tf.keras.utils.img_to_array(img)
-img_array = tf.expand_dims(img_array, 0) # Create a batch
-
-predictions = model.predict(img_array)
-score = tf.nn.softmax(predictions[0])
-
-print(
-    "There is a {:.2f} percent chance that this image is {}."
-    .format(100 * np.max(score), class_names[np.argmax(score)])
-)
-
-#Ignore this
-'''
-trdata = tf.keras.preprocessing.image.ImageDataGenerator()
-traindata = trdata.flow_from_directory(directory="Real\Train",target_size=(224,224))
-tsdata = tf.keras.preprocessing.image.ImageDataGenerator()
-valdata = tsdata.flow_from_directory(directory="Real\Valid", target_size=(224,224))
-
-model = Sequential()
-model.add(Conv2D(input_shape=(224,224,3),filters=64,kernel_size=(3,3),padding="same", activation="relu"))
-model.add(Conv2D(filters=64,kernel_size=(3,3),padding="same", activation="relu"))
-model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
-model.add(Conv2D(filters=128, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(Conv2D(filters=128, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
-model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
-
-model.add(Flatten())
-model.add(Dense(units=4096,activation="relu"))
-model.add(Dense(units=4096,activation="relu"))
-model.add(Dense(units=2, activation="softmax"))
-
-
-opt = Adam(lr=0.001)
-model.compile(optimizer=opt, loss=keras.losses.categorical_crossentropy, metrics=['accuracy'])
-model.summary() '''
+    except FileNotFoundError:
+        print("File not found.\n")
