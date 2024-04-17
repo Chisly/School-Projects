@@ -70,7 +70,7 @@ model.compile(optimizer = 'adam',
 #Goes through the dataset epoch # times
 #More epochs does not mean better as it may overfit the model
 #Too few epochs may not let the model find a pattern
-epochs=6
+epochs=4
 history = model.fit(
   train_ds,
   validation_data=val_ds,
